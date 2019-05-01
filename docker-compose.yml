@@ -1,0 +1,66 @@
+version: "3.3"
+services:
+  #http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose
+  #https://blog.victor-hery.com/2015/12/configurer-reverse-proxy-haproxy.html
+  #https://www.linuxtricks.fr/wiki/creer-un-certificat-auto-signe-et-le-renseigner-dans-apache2-ou-nginx
+  haproxy:
+    build: ./haproxy
+    depends_on: 
+    - nginx-front-01
+    - nginx-front-02
+    ports:
+      - 80:80
+      - 443:443
+
+  #https://miki725.com/docker/crypto/2017/01/29/docker+nginx+letsencrypt.html
+  nginx-front-01:
+    build: ./nginx-front/front-01
+    depends_on: 
+    - wp-backend-01
+    expose:
+      - 80
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - ./wp-backend/www:/var/www/html 
+
+  nginx-front-02:
+    build: ./nginx-front/front-02
+    depends_on: 
+    - wp-backend-02
+    expose:
+      - 80
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - ./wp-backend/www:/var/www/html 
+  
+  wp-backend-01:
+    build: ./wp-backend
+    container_name : wp-backend-01
+    depends_on: 
+    - mariadb
+    expose:
+      - 80
+    restart: always
+    volumes:
+    - ./wp-backend/www:/var/www/html 
+
+  wp-backend-02:
+    build: ./wp-backend
+    container_name : wp-backend-02
+    depends_on: 
+    - mariadb
+    expose:
+      - 80
+    restart: always
+    volumes:
+    - ./wp-backend/www:/var/www/html 
+
+  mariadb:
+    build: ./database
+    container_name : mariadb
+    expose:
+      - 3306
+    restart: always
+    volumes:
+    - ./database/data:/var/lib/mysql
+

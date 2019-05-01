@@ -1,0 +1,9 @@
+FROM wordpress:latest
+
+ENV WORDPRESS_DB_HOST mariadb:3306
+ENV WORDPREES_DB_USER root
+ENV WORDPRESS_DB_PASSWORD admin
+ENV WORDPRESS_DB_NAME wordpress
+
+
+
