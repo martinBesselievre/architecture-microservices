@@ -1,8 +1,5 @@
 version: "3.3"
 services:
-  #http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose
-  #https://blog.victor-hery.com/2015/12/configurer-reverse-proxy-haproxy.html
-  #https://www.linuxtricks.fr/wiki/creer-un-certificat-auto-signe-et-le-renseigner-dans-apache2-ou-nginx
   haproxy:
     build: ./haproxy
     depends_on: 
@@ -12,7 +9,6 @@ services:
       - 80:80
       - 443:443
 
-  #https://miki725.com/docker/crypto/2017/01/29/docker+nginx+letsencrypt.html
   nginx-front-01:
     build: ./nginx-front/front-01
     depends_on: 
