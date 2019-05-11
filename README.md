@@ -4,7 +4,7 @@
 L'architecture est construite à l'aide de six __micro-services__ containerisés. Chaque __micro-service__ correspond à un __processus__. Chaque __micro-service__ porte une ou plusieurs __responsabilités__.
 
 #### Le répartiteur de charge 
-* __Responsabiltés: __ 
+* Responsabilités :
 ### Les deux serveurs Web
 ### Les deux backend WordPress
 ### La base de données MariaDB
