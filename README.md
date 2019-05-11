@@ -6,6 +6,9 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 #### Le répartiteur de charge 
 * Responsabilités :
 	* Réécire les URLs en HTTP en URLs HTTPS
+	* Vérifier la validité du certificat SSL
+	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin (50% de requêtes chaque serveur)
+	* Gérer l'affinité de session. (Un cookie est généré à chaque nouvel utilisateur. Ce cookie permet d'envoyer la requête sur le même serveur web afin de ne pas perdre les données de session)
 ### Les deux serveurs Web
 ### Les deux backend WordPress
 ### La base de données MariaDB
