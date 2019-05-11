@@ -21,7 +21,13 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 * __Mise en oeuvre:__
 	* Utilisation d'une image Docker de base __wordpress:latest__
 	* Customisation de l'image 
-		* Pour passer les variables d'environnement (WORDPRESS_DB_HOST, WORDPREES_DB_USER, WORDPRESS_DB_PASSWORD, WORDPRESS_DB_NAME)
+		* Spécification des variables d'environnement
+			* ENV WORDPRESS_DB_HOST 
+			* ENV WORDPREES_DB_USER
+			* ENV WORDPRESS_DB_PASSWORD
+			* ENV WORDPRESS_DB_NAME
+	* Deux containers wp-backend01 et wp-backend02
+	* Chaque backend dépend du container database et expose le port 80
 	
 		
 	
