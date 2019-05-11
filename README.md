@@ -5,6 +5,7 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 
 #### Le répartiteur de charge 
 * Responsabilités :
+** Réécire les URLs en HTTP en URLs HTTPS
 ### Les deux serveurs Web
 ### Les deux backend WordPress
 ### La base de données MariaDB
