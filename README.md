@@ -7,15 +7,16 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 * __Responsabilités:__
 	* Réécrire les URLs en HTTP en URLs HTTPS
 	* Présenter le certificat du serveur au client
-	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin (Répartition 50/50)
-	* Gérer l'affinité de session utilisateur.
-		* Nécessaire pour ne pas perdre les données de session (Ex: authenfication)
-		* Un nouveau client est associé à un cookie de session généré par l'un des deux frontends.
-		* Si le client présente ce cookie, il est dirigé vers le même frontend.
+	* Vérifier que les deux frontends Nginx sont bien présents
+	* Répartir les requêtes entre les frontends NGINX
+	* Gérer l'affinité de session utilisateur. 
+		
 * __Mise en oeuvre:__
 	* Utilisation d'une image Docker de base __haproxy:alpine__
 	* Customisation de l'image de base
 		* Surcharge du fichier de configuration __haproxy.cfg__
+	* Un container HAProxy
+		* Le container dépend des deux containers frontend-01 et fr
 	* Configuration du HAProxy
 		* Frontend HTTP
 			* Ecoute en HTTP sur le port __80__
@@ -27,8 +28,13 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 			* Présente un certificat au client
 			* Redirige les requêtes vers le backend __webservers__ si l'acl est vérifiée et que le client accepte le certificat du serveur
 		* Backend webservers
-		
-			
+			* Vérifie que les deux frontends NGINX sont bien présents ( option httpchk)
+			* Répartit à 50/50 les requêtes entre les deux serveurs frontends NGINX (balance roundrobin). 
+			* Met en place l'affinité de sessions (cookie SERVERID insert indirect nocache)
+				* Nécessaire pour ne pas perdre les données de session (Ex: authenfication)
+				* Un nouveau client est associé à un cookie de session généré par l'un des deux frontends.
+				* Si le client présente ce cookie, il est dirigé vers le même frontend.
+			* Transmet un header X-Forwarded-Proto au frontend NGINX
 	
 ### Les deux serveurs Web
 * __Responsabilités__:
