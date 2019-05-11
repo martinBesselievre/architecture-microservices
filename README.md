@@ -5,21 +5,34 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 
 #### Le répartiteur de charge 
 * Responsabilités :
-	* Réécire les URLs en HTTP en URLs HTTPS
-	* Vérifier la validité du certificat SSL
-	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin (50% de requêtes chaque serveur)
-	* Gérer l'affinité de session. (Un cookie est généré à chaque nouvel utilisateur. Ce cookie permet d'envoyer la requête sur le même serveur web afin de ne pas perdre les données de session)
+	* Réécrire les URLs en HTTP en URLs HTTPS
+	* Vérifierla validité du certificat SSL
+	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin.
+	* Gérer l'affinité de session utilisateur. 
+	
 ### Les deux serveurs Web
+* Responsabilités :
+        * Soulager le backend WordPress en servant les ressources statiques
+	* Transmettre les requêtes PHP vers un backend WordPress
+	
 ### Les deux backend WordPress
+* Responsabilités:
+	* Gestion de contenu (CMS)
+	
 ### La base de données MariaDB
+* Responsabilités:
+	* Persistance des données.
+* Mise en oeuvre:
+	* Utilisation d'une image de base  mariadb/server:10.3
+	* Le service MariaDB expose le port 3306.
+	* Customisation de l'image mariadb/server:10.3 
+		* Nécessaire pour pouvoir accéder à Mariadb depuis l'extérieur du container mariadb.
+		* Surcharge du my.cnf (bind-address        = 0.0.0.0)
+	* Utilisation d'un volume
+		* Permet de ne pas perdre les données si on perd le container mariadb.
+		* Le volume est associé à l'emplacement /var/lib/mysql
+		
+	
 
-
-		Le service repose sur un container HAProxy.
-                Le service est configuré pour recevoir des requêtes correspondant au hostname backdoor.monblog.etna.
-                Seuls les requêtes en  HTTPS pourront arriver jusqu'aux deux serveurs WEB après vérification de la validité du certificat SSL.
-                Pour cela le service HAProxy reécrit les URLs HTTP en URL HTTPS.
-                Le service répartit la charge entre les deux serveurs WEB.
-                Les requêtes sont envoyées successivement à l'un ou l'autre des deux serveurs WEB (Round-Robin)
-                Le service est configuré pour gérer l'affinité de session.
 		
 		
