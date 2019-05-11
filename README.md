@@ -12,7 +12,7 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 	
 ### Les deux serveurs Web
 * __Responsabilités__:
-        * Soulager le backend WordPress en servant les ressources statiques
+	* Soulager le backend WordPress en servant les ressources statiques
 	* Transmettre les requêtes PHP vers un backend WordPress
 * __Mise en oeuvre__:
 	* Utilisation d'une image Docker de base __nginx:latest__
