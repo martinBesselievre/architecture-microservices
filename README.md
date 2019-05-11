@@ -10,13 +10,18 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 	* Vérifier que les deux frontends Nginx sont bien présents
 	* Répartir les requêtes entre les frontends NGINX
 	* Gérer l'affinité de session utilisateur. 
-		
 * __Mise en oeuvre:__
 	* Utilisation d'une image Docker de base __haproxy:alpine__
 	* Customisation de l'image de base
 		* Surcharge du fichier de configuration __haproxy.cfg__
+		* Installation du certificat serveur au format __pem__ dans le répertoire __/etc/haproxy/cert__
 	* Un container HAProxy
-		* Le container dépend des deux containers frontend-01 et fr
+		* Le container dépend des deux containers frontend-01 et frondend-02
+		* Le container expose les ports 80 et 443. 
+		* Les ports 80 et 443 sonts mappés aux ports 80 et 443 de la machine Hote
+		* Le container HAProxy est le seul point d'entrée depuis la machine Hote.
+	* Cerficat serveur
+		* Utilisation d'OpenSSL pour générér un certificat autosigné pour le domaine __backdoor.monblog.etna__
 	* Configuration du HAProxy
 		* Frontend HTTP
 			* Ecoute en HTTP sur le port __80__
