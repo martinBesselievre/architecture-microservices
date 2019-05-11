@@ -6,7 +6,7 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 #### Le répartiteur de charge 
 * __Responsabilités:__
 	* Réécrire les URLs en HTTP en URLs HTTPS
-	* Vérifierla validité du certificat SSL
+	* Vérifier que le client est bien autorisé à accéder au serveur 
 	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin (Répartition 50/50)
 	* Gérer l'affinité de session utilisateur.
 		* Nécessaire pour ne pas perdre les données de session (Ex: authenfication)
@@ -21,12 +21,13 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 			* Ecoute en HTTP sur le port __80__
 			* Intercepte via une __règle acl__ les requêtes se présentant avec un header host __backdoor.monblog.etna__
 			* Redirige les requêtes vers le frontend HTTPS si l'acl est vérifiée
-			
 		* Frontend HTTPS
-			* Ecoute en HTTP sur le port __443__
+			* Ecoute en HTTP sur le port __443__ 
 			* Intercepte via une __règle acl__ les requêtes se présentant avec un header host __backdoor.monblog.etna__
-			* Redirige les requêtes vers le backend __webservers__ si l'acl est vérifiée
-			* 
+			* Présente un certificat au client
+			* Redirige les requêtes vers le backend __webservers__ si l'acl est vérifiée et que le client accepte le certificat
+		* Backend webservers
+		
 			
 	
 ### Les deux serveurs Web
