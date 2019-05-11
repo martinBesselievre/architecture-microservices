@@ -1,13 +1,11 @@
 # architecture-microservices
 
 ## Architecture
-L'architecture est construite à l'aide de six __micro-services__ containerisés. 
-
-* Chaque service correspond à un processus.
-* Chaque service porte une ou plusieurs responsabilités.
+L'architecture est construite à l'aide de six __micro-services__ containerisés. Chaque micro-service correspond à un processus. Chaque micro-service porte une ou plusieurs responsabilités.
 
 ### Le répartition de charge 
-### Les deux serveurs WEB
+* Responsabiltés :
+### Les deux serveurs Web
 ### Les deux backend WordPress
 ### La base de données MariaDB
 
