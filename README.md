@@ -1,9 +1,10 @@
 # architecture-microservices
 
 ## Architecture
-L'architecture mise en oeuvre est construite à l'aide de six micro-services containerisés. 
+L'architecture est construite à l'aide de six __micro-services__ containerisés. 
 
-Chaque service correspond à un processus.
+* Chaque service correspond à un processus.
+* Chaque service porte une ou plusieurs responsabilités.
 
 * Service de répartition de charge : Load Balancer
 		Le service repose sur un container HAProxy.
