@@ -35,6 +35,7 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 		* Permet de ne pas perdre les données si on perd un container frontend
 		* Un volume est associé au répertoire __/var/www/html__
 		* Un volume associé au répertoire __/var/log/nginx__
+		* Les deux frontends utilisent les mêmes données (répertoire de la machine Hote)
 	
 ### Les deux backend WordPress
 * __Responsabilités:__
