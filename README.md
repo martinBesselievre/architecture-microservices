@@ -6,7 +6,12 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 * Chaque service correspond à un processus.
 * Chaque service porte une ou plusieurs responsabilités.
 
-* Service de répartition de charge : Load Balancer
+### Le répartition de charge 
+### Les deux serveurs WEB
+### Les deux backend WordPress
+### La base de données MariaDB
+
+
 		Le service repose sur un container HAProxy.
                 Le service est configuré pour recevoir des requêtes correspondant au hostname backdoor.monblog.etna.
                 Seuls les requêtes en  HTTPS pourront arriver jusqu'aux deux serveurs WEB après vérification de la validité du certificat SSL.
