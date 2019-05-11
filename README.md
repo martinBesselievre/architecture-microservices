@@ -20,9 +20,9 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 	* Gestion de contenu (CMS)
 	
 ### La base de données MariaDB
-* Responsabilités:
+* __Responsabilités:__
 	* Persistance des données.
-* Mise en oeuvre:
+* __Mise en oeuvre:__
 	* Utilisation d'une image de base  mariadb/server:10.3
 	* Le service MariaDB expose le port 3306.
 	* Customisation de l'image mariadb/server:10.3 
