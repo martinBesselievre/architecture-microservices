@@ -1,7 +1,11 @@
 # architecture-microservices
 
-L'architecture mise en oeuvre est construite à l'aide de six micro-services containerisés. Chaque service correspond à un processus.
-	Service de répartition de charge : Load Balancer
+## Architecture
+L'architecture mise en oeuvre est construite à l'aide de six micro-services containerisés. 
+
+Chaque service correspond à un processus.
+
+* Service de répartition de charge : Load Balancer
 		Le service repose sur un container HAProxy.
                 Le service est configuré pour recevoir des requêtes correspondant au hostname backdoor.monblog.etna.
                 Seuls les requêtes en  HTTPS pourront arriver jusqu'aux deux serveurs WEB après vérification de la validité du certificat SSL.
