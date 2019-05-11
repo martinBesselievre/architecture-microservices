@@ -16,15 +16,21 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 	* Transmettre les requêtes PHP vers un backend WordPress
 	
 ### Les deux backend WordPress
-* Responsabilités:
+* __Responsabilités:__
 	* Gestion de contenu (CMS)
+* __Mise en oeuvre:__
+	* Utilisation d'une image Docker de base __wordpress:latest__
+	* Customisation de l'image 
+		* Pour passer les variables d'environnement (WORDPRESS_DB_HOST, WORDPREES_DB_USER, WORDPRESS_DB_PASSWORD, WORDPRESS_DB_NAME)
+	
+		
 	
 ### La base de données MariaDB
 * __Responsabilités:__
 	* Persistance des données.
 * __Mise en oeuvre:__
-	* Utilisation d'une image de base  mariadb/server:10.3
-	* Le service MariaDB expose le port 3306.
+	* Utilisation d'une image de base  __mariadb/server:10.3__
+	* Le service MariaDB expose le port __3306__.
 	* Customisation de l'image mariadb/server:10.3 
 		* Nécessaire pour pouvoir accéder à Mariadb depuis l'extérieur du container mariadb.
 		* Surcharge du my.cnf (bind-address        = 0.0.0.0)
