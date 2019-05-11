@@ -4,11 +4,14 @@
 L'architecture est construite à l'aide de six __micro-services__ containerisés. Chaque __micro-service__ correspond à un __processus__. Chaque __micro-service__ porte une ou plusieurs __responsabilités__.
 
 #### Le répartiteur de charge 
-* Responsabilités :
+* __Responsabilités:__
 	* Réécrire les URLs en HTTP en URLs HTTPS
 	* Vérifierla validité du certificat SSL
-	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin.
-	* Gérer l'affinité de session utilisateur. 
+	* Répartir les requêtes entre les deux serveurs WEB en Round-Robin (Répartition 50/50)
+	* Gérer l'affinité de session utilisateur.
+		* Nécessaire pour ne pas perdre les données de session (Ex: authenfication)
+		* Un nouveau client est associé à un cookie de session généré par l'un des deux frontends.
+		* Si le client présente ce cookie, il est dirigé vers le même frontend.
 	
 ### Les deux serveurs Web
 * __Responsabilités__:
