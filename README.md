@@ -12,6 +12,18 @@ L'architecture est construite à l'aide de six __micro-services__ containerisés
 		* Nécessaire pour ne pas perdre les données de session (Ex: authenfication)
 		* Un nouveau client est associé à un cookie de session généré par l'un des deux frontends.
 		* Si le client présente ce cookie, il est dirigé vers le même frontend.
+* __Mise en oeuvre:
+	* Utilisation d'une image Docker de base __haproxy:alpine__
+	* Customisation de l'image de base
+		* Surcharge du fichier de configuration __haproxy.cfg__
+	* Configuration du HAProxy
+		* Frontend HTTP
+			* Ecoute en HTTP sur le port __80__
+			* Intercepte via une __règle acl__ les requêtes se présentant avec un header host __backdoor.monblog.etna__
+			* Redirige ces requêtes vers le frontend HTTPS
+			
+		* Déclaration d'un frontend HTTP 
+			* 
 	
 ### Les deux serveurs Web
 * __Responsabilités__:
